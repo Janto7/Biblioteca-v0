@@ -118,5 +118,5 @@ public class Libros {
 		coleccionLibros[i] = null;
 		tamano--;
 	}
-
 }
+

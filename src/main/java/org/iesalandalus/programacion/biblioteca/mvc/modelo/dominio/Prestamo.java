@@ -69,18 +69,15 @@ public class Prestamo {
 	}
 
 	public int getPuntos() {
-		int diasPrestamo = 0;
-		float puntosObtenidos = 0f;
-
+		float puntos = 0f;
 		if (fechaDevolucion != null) {
-			diasPrestamo = (int) ChronoUnit.DAYS.between(fechaPrestamo, fechaDevolucion);
+			int diasPrestamo = (int) ChronoUnit.DAYS.between(fechaPrestamo, fechaDevolucion);
 			if (diasPrestamo <= MAX_DIAS_PRESTAMO) {
-				puntosObtenidos = libro.getPuntos() / diasPrestamo;
-			} else {
-				puntosObtenidos = libro.getPuntos() / MAX_DIAS_PRESTAMO;
+				float factorPuntos = (float) MAX_DIAS_PRESTAMO / (diasPrestamo * MAX_DIAS_PRESTAMO);
+				puntos = libro.getPuntos() * factorPuntos;
 			}
 		}
-		return Math.round(puntosObtenidos);
+		return Math.round(puntos);
 	}
 
 	public Alumno getAlumno() {
